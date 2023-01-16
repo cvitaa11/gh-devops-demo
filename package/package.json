@@ -1,0 +1,15 @@
+{
+  "name": "@cvitaa11/is-palindrome",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cvitaa11/gh-devops-demo.git"
+  },
+  "version": "1.0.0",
+  "description": "Simple package that checks if string is palindrome",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ivan Cvitkovic",
+  "license": "ISC"
+}
