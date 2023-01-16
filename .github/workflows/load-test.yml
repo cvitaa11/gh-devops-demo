@@ -1,0 +1,33 @@
+name: Load test
+on:
+  push:
+    branches: [main]
+    paths:
+      - test/**
+  workflow_dispatch:
+
+jobs:
+  load_test:
+    name: k6 Load Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Run local k6 test
+        uses: grafana/k6-action@v0.2.0
+        with:
+          filename: test/performance.js
+        env:
+          APP_HOSTNAME: is-palindrome.azurewebsites.net
+      - name: Run local k6 test with JSON output
+        uses: grafana/k6-action@v0.2.0
+        with:
+          filename: test/performance.js
+          flags: --out json=results.json
+        env:
+          APP_HOSTNAME: is-palindrome.azurewebsites.net
+      - name: Upload load test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: k6-report
+          path: results.json
