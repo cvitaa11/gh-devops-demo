@@ -66,3 +66,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ISSUES_GITHUB_TOKEN }}
         with:
           filename: .github/ISSUE_TEMPLATE/build-failed-report.md
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set application version
+        working-directory: app
+        run: |
+          VER=$(cat version)
+          echo "VERSION=$VER" >> $GITHUB_ENV
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.NPM_GITHUB_TOKEN }}
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: "app-demo"
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: ghcr.io/${{ github.actor }}/app-demo:${{ env.VERSION }}
