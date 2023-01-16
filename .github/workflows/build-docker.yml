@@ -84,6 +84,6 @@ jobs:
           password: ${{ secrets.NPM_GITHUB_TOKEN }}
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: "app-demo"
+          app-name: "is-palindrome"
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           images: ghcr.io/${{ github.actor }}/app-demo:${{ env.VERSION }}
