@@ -1,0 +1,68 @@
+name: Publish application
+on:
+  push:
+    branches: [main]
+    paths:
+      - app/**
+      - .github/workflows/build-docker.yml
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.x"
+          registry-url: "https://npm.pkg.github.com/"
+      - name: Test the application
+        working-directory: app
+        run: |
+          npm install
+          npm test -- --watchAll=false
+        env:
+          NPM_GITHUB_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}
+      - name: Create issue if test fails
+        id: create-tests-issue
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ISSUES_GITHUB_TOKEN }}
+        with:
+          filename: .github/ISSUE_TEMPLATE/test-failed-report.md
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set application version
+        working-directory: app
+        run: |
+          VER=$(cat version)
+          echo "VERSION=$VER" >> $GITHUB_ENV
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.NPM_GITHUB_TOKEN }}
+      - name: Build and push container image
+        uses: docker/build-push-action@v3
+        with:
+          context: app/.
+          push: true
+          build-args: token=${{ secrets.NPM_GITHUB_TOKEN }}
+          tags: ghcr.io/${{ github.actor }}/app-demo:${{ env.VERSION }}
+      - name: Create issue if build fails
+        id: create-build-issue
+        if: ${{ failure() }}
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.ISSUES_GITHUB_TOKEN }}
+        with:
+          filename: .github/ISSUE_TEMPLATE/build-failed-report.md
