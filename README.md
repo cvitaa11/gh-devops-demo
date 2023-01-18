@@ -10,3 +10,5 @@ It consists of a small React application that checks if string is palindrome. Th
 
 React code is located in [app directory](./app/). Application is packaged as a Docker container and container image is published [here](https://github.com/cvitaa11/gh-devops-demo/pkgs/container/app-demo) on the GitHub Container registry.\
 Logic behind our palindrome funcionality is stored in [package directory](./package/) and the npm package is published [here](https://github.com/cvitaa11/gh-devops-demo/pkgs/npm/is-palindrome) on GitHub Packages.
+
+Application is deployed as a Docker container on Azure App Services.
