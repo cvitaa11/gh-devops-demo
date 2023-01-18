@@ -1,6 +1,4 @@
-[![Publish npm package to GitHub Packages](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml)
-
-[![Test, build and package application](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml)
+[![Publish npm package to GitHub Packages](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml) [![Test, build and package application](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml)
 
 ## gh-devops-demo
 
