@@ -24,7 +24,7 @@ jobs:
         working-directory: app
         run: |
           npm install
-          npm 123 -- --watchAll=false
+          npm test -- --watchAll=false
         env:
           NPM_GITHUB_TOKEN: ${{ secrets.NPM_GITHUB_TOKEN }}
       - name: Create issue if test fails
