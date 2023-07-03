@@ -1,4 +1,7 @@
-[![Publish npm package to GitHub Packages](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml) [![Test, build and package application](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml)
+[![Publish npm package to GitHub Packages](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/publish-npm.yml) 
+[![Test, build and package application](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/build-docker.yml)
+[![Load test](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/load-test.yml/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/load-test.yml) 
+[![CodeQL](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/cvitaa11/gh-devops-demo/actions/workflows/github-code-scanning/codeql)
 
 ## gh-devops-demo
 
